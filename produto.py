@@ -1,60 +1,114 @@
 from colorama import init, Fore
 
-# Inicializa o Colorama
 init(autoreset=True)
 
-print(Fore.CYAN + "\n" + "-" * 40)
-print(Fore.CYAN + "         SISTEMA DE PRODUTOS")
-print(Fore.CYAN + "-" * 40)
-print(Fore.WHITE + "Informe os dados do produto abaixo.\n")
 
+def carregar_produtos():
+    produtos = []
 
-# Cadastro do nome
-while True:
-    nome = input(Fore.WHITE + "Nome do produto: ").strip()
-
-    if nome:
-        break
-
-    print(Fore.RED + "O nome do produto não pode ser vazio.\n")
-
-
-# Cadastro do preço
-while True:
     try:
-        preco = float(input(Fore.WHITE + "Preço do produto: R$ ").replace(",", "."))
+        with open("produtos.txt", "r", encoding="utf-8") as arquivo:
+            for linha in arquivo:
+                dados = linha.strip().split("|")
 
-        if preco > 0:
+                if len(dados) == 3:
+                    nome = dados[0]
+                    preco = float(dados[1])
+                    quantidade = int(dados[2])
+
+                    produtos.append(
+                        {
+                            "nome": nome,
+                            "preco": preco,
+                            "quantidade": quantidade
+                        }
+                    )
+
+    except FileNotFoundError:
+        pass
+
+    return produtos
+
+
+def salvar_produto(nome, preco, quantidade):
+    with open("produtos.txt", "a", encoding="utf-8") as arquivo:
+        arquivo.write(
+            f"{nome}|{preco}|{quantidade}\n"
+        )
+
+
+def cadastrar_produto():
+    print(Fore.CYAN + "\n" + "-" * 40)
+    print(Fore.CYAN + "         SISTEMA DE PRODUTOS")
+    print(Fore.CYAN + "-" * 40)
+    print(Fore.WHITE + "Informe os dados do produto abaixo.\n")
+
+    while True:
+        nome = input(Fore.WHITE + "Nome do produto: ").strip()
+
+        if nome:
             break
 
-        print(Fore.RED + "O preço deve ser maior que zero.\n")
+        print(
+            Fore.RED
+            + "O nome do produto não pode ser vazio.\n"
+        )
 
-    except ValueError:
-        print(Fore.RED + "Digite um valor numérico válido.\n")
+    while True:
+        try:
+            preco = float(
+                input(Fore.WHITE + "Preço do produto: R$ ")
+            )
 
+            if preco > 0:
+                break
 
-# Cadastro da quantidade
-while True:
-    try:
-        quantidade = int(input(Fore.WHITE + "Quantidade: "))
+            print(
+                Fore.RED
+                + "O preço deve ser maior que zero.\n"
+            )
 
-        if quantidade > 0:
-            break
+        except ValueError:
+            print(
+                Fore.RED
+                + "Digite um valor numérico válido.\n"
+            )
 
-        print(Fore.RED + "A quantidade deve ser maior que zero.\n")
+    while True:
+        try:
+            quantidade = int(
+                input(Fore.WHITE + "Quantidade: ")
+            )
 
-    except ValueError:
-        print(Fore.RED + "Digite uma quantidade válida.\n")
+            if quantidade > 0:
+                break
 
+            print(
+                Fore.RED
+                + "A quantidade deve ser maior que zero.\n"
+            )
 
-# Exibição dos dados
-print(Fore.GREEN + "\n" + "-" * 40)
-print(Fore.GREEN + "       PRODUTO CADASTRADO")
-print(Fore.GREEN + "-" * 40)
+        except ValueError:
+            print(
+                Fore.RED
+                + "Digite uma quantidade válida.\n"
+            )
 
-print(Fore.WHITE + f"\nNome: {nome}")
-print(Fore.WHITE + f"Preço: R$ {preco:.2f}")
-print(Fore.WHITE + f"Quantidade: {quantidade}")
+    salvar_produto(nome, preco, quantidade)
 
-print(Fore.GREEN + "\nCadastro realizado com sucesso.")
-print(Fore.GREEN + "-" * 40)
+    print(Fore.GREEN + "\n" + "-" * 40)
+    print(Fore.GREEN + "       PRODUTO CADASTRADO")
+    print(Fore.GREEN + "-" * 40)
+
+    print(Fore.WHITE + f"\nNome: {nome}")
+    print(Fore.WHITE + f"Preço: R$ {preco:.2f}")
+    print(Fore.WHITE + f"Quantidade: {quantidade}")
+
+    print(Fore.GREEN + "\nCadastro realizado com sucesso.")
+    print(Fore.GREEN + "-" * 40)
+
+    return {
+        "nome": nome,
+        "preco": preco,
+        "quantidade": quantidade
+    }
