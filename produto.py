@@ -12,20 +12,23 @@ while True:
         print(colorama.Fore.GREEN + "Nome cadastrado com sucesso!" + colorama.Style.RESET_ALL)
         break
 
-
-# Cadastro do preço
+# Cadastro da quantidade
 while True:
     try:
-        preco = float(input("Digite o preço do produto: "))
+        quantidade = int(input("Digite a quantidade do produto: "))
 
-        if preco < 0:
-            print(colorama.Fore.RED + "Erro: O preço do produto não pode ser negativo." + colorama.Style.RESET_ALL)
+        if quantidade < 0:
+            print(colorama.Fore.RED + "Erro: A quantidade não pode ser negativa." + colorama.Style.RESET_ALL)
         else:
-            print(colorama.Fore.GREEN + "Preço cadastrado com sucesso!" + colorama.Style.RESET_ALL)
+            print(colorama.Fore.GREEN + "Quantidade cadastrada com sucesso!" + colorama.Style.RESET_ALL)
             break
 
     except ValueError:
-        print(colorama.Fore.RED + "Erro: O preço do produto deve ser um NÚMERO válido." + colorama.Style.RESET_ALL)
+        print(colorama.Fore.RED + "Erro: A quantidade deve ser um número inteiro válido." + colorama.Styleama.Style.RESET_ALL)
 
 
-print(colorama.Fore.CYAN + f"\nProduto cadastrado com sucesso!\nNome: {nome}\nPreço: R${preco:.2f}" + colorama.Style.RESET_ALL)
+# Exibição do cadastro
+print(colorama.Fore.CYAN + "\n--- Cadastro do Produto ---" + colorama.Style.RESET_ALL)
+print(f"Nome: {nome}")
+print(f"Preço: R$ {preco:.2f}")
+print(f"Quantidade: {quantidade}")
