@@ -1,42 +1,60 @@
-import colorama
+from colorama import init, Fore
 
-colorama.init()
+# Inicializa o Colorama
+init(autoreset=True)
+
+print(Fore.CYAN + "\n" + "-" * 40)
+print(Fore.CYAN + "         SISTEMA DE PRODUTOS")
+print(Fore.CYAN + "-" * 40)
+print(Fore.WHITE + "Informe os dados do produto abaixo.\n")
+
 
 # Cadastro do nome
 while True:
-    nome = input("Digite o nome do produto: ").strip()
+    nome = input(Fore.WHITE + "Nome do produto: ").strip()
 
-    if nome == "":
-        print(colorama.Fore.RED + "Erro: O nome do produto não pode ser vazio." + colorama.Style.RESET_ALL)
-    else:
-        print(colorama.Fore.GREEN + "Nome cadastrado com sucesso!" + colorama.Style.RESET_ALL)
+    if nome:
         break
+
+    print(Fore.RED + "O nome do produto não pode ser vazio.\n")
+
 
 # Cadastro do preço
 while True:
     try:
-        preco = float(input("Digite o preço do produto: "))
+        preco = float(input(Fore.WHITE + "Preço do produto: R$ ").replace(",", "."))
 
-        if preco < 0:
-            print(colorama.Fore.RED + "Erro: O preço do produto não pode ser negativo." + colorama.Style.RESET_ALL)
-        else:
-            print(colorama.Fore.GREEN + "Preço cadastrado com sucesso!" + colorama.Style.RESET_ALL)
+        if preco > 0:
             break
 
+        print(Fore.RED + "O preço deve ser maior que zero.\n")
+
     except ValueError:
-        print(colorama.Fore.RED + "Erro: O preço deve ser um número válido." + colorama.Style.RESET_ALL)
+        print(Fore.RED + "Digite um valor numérico válido.\n")
+
+
 # Cadastro da quantidade
 while True:
     try:
-        quantidade = int(input("Digite a quantidade do produto: "))
+        quantidade = int(input(Fore.WHITE + "Quantidade: "))
 
-        if quantidade < 0:
-            print(colorama.Fore.RED + "Erro: A quantidade não pode ser negativa." + colorama.Style.RESET_ALL)
-        else:
-            print(colorama.Fore.GREEN + "Quantidade cadastrada com sucesso!" + colorama.Style.RESET_ALL)
+        if quantidade > 0:
             break
 
+        print(Fore.RED + "A quantidade deve ser maior que zero.\n")
+
     except ValueError:
-        print(colorama.Fore.RED + "Erro: A quantidade deve ser um número inteiro válido." + colorama.Style.RESET_ALL)
+        print(Fore.RED + "Digite uma quantidade válida.\n")
 
 
+# Exibição dos dados
+print(Fore.GREEN + "\n" + "-" * 40)
+print(Fore.GREEN + "       PRODUTO CADASTRADO")
+print(Fore.GREEN + "-" * 40)
+
+print(Fore.WHITE + f"\nNome: {nome}")
+print(Fore.WHITE + f"Preço: R$ {preco:.2f}")
+print(Fore.WHITE + f"Quantidade: {quantidade}")
+
+print(Fore.GREEN + "\nCadastro realizado com sucesso.")
+print(Fore.GREEN + "-" * 40)
