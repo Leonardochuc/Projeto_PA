@@ -28,4 +28,4 @@ while True:
         print(colorama.Fore.RED + "Erro: O preço do produto deve ser um NÚMERO válido." + colorama.Style.RESET_ALL)
 
 
-# Exibição do cadastro print(colorama.Fore.CYAN + "\n--- Cadastro do Produto ---" + colorama.Style.RESET_ALL) print(f"Nome: {nome}") print(f"Preço: R$ {preco:.2f}") print(f"Quantidade: {quantidade}")
+print(colorama.Fore.CYAN + f"\nProduto cadastrado com sucesso!\nNome: {nome}\nPreço: R${preco:.2f}" + colorama.Style.RESET_ALL)
