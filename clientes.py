@@ -5,7 +5,7 @@ init(autoreset=True)
 
 
 class Cliente:
-    def _init_(self, nome, email, telefone):
+    def __init__(self, nome, email, telefone):
         self.nome = nome
         self.email = email
         self.telefone = telefone
