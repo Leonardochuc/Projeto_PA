@@ -42,3 +42,43 @@ def validar_telefone(telefone):
 print(Fore.YELLOW + "=" * 35)
 print(Fore.YELLOW + "      CADASTRO DE CLIENTE")
 print(Fore.YELLOW + "=" * 35)
+
+# Nome
+while True:
+    nome = input(Fore.WHITE + "Nome: ")
+
+    if validar_nome(nome):
+        break
+
+    print(
+        Fore.RED
+        + "❌ Nome inválido! Digite apenas letras e espaços."
+    )
+
+# E-mail
+while True:
+    email = input(Fore.WHITE + "E-mail: ")
+
+    if validar_email(email):
+        break
+
+    print(
+        Fore.RED
+        + "❌ E-mail inválido! Exemplo: nome@email.com"
+    )
+
+# Telefone
+while True:
+    telefone = input(Fore.WHITE + "Telefone: ")
+
+    if validar_telefone(telefone):
+        break
+
+    print(
+        Fore.RED
+        + "❌ Telefone inválido! Digite apenas números."
+    )
+
+cliente = Cliente(nome.title(), email.lower(), telefone)
+
+cliente.exibir_dados()
