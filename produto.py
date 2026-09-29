@@ -25,7 +25,7 @@ while True:
 
     except ValueError:
         print(Fore.RED + "Erro: O preço deve ser um número válido." + Style.RESET_ALL)
-        
+
 # Cadastro da quantidade
 while True:
     try:
@@ -40,4 +40,8 @@ while True:
     except ValueError:
         print(colorama.Fore.RED + "Erro: A quantidade deve ser um número inteiro válido." + colorama.Styleama.Style.RESET_ALL)
 
-
+# Exibição do cadastro
+print(Fore.CYAN + "\n--- Cadastro do Produto ---" + Style.RESET_ALL)
+print(f"Nome: {nome}")
+print(f"Preço: R$ {preco:.2f}")
+print(f"Quantidade: {quantidade}")
