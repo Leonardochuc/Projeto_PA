@@ -1,46 +1,31 @@
+import colorama
 
-from colorama import Fore, Style, init
+colorama.init()
 
-init()
-
-try:
+# Cadastro do nome
+while True:
     nome = input("Digite o nome do produto: ").strip()
 
     if nome == "":
-        print(Fore.RED + "Erro: O nome do produto não pode ser vazio." + Style.RESET_ALL)
+        print(colorama.Fore.RED + "Erro: O nome do produto não pode ser vazio." + colorama.Style.RESET_ALL)
     else:
-        print(Fore.GREEN + "Nome cadastrado com sucesso!" + Style.RESET_ALL)
-
-except ValueError:
-    print(Fore.RED + "Erro: O nome do produto não pode ser vazio." + Style.RESET_ALL)
+        print(colorama.Fore.GREEN + "Nome cadastrado com sucesso!" + colorama.Style.RESET_ALL)
+        break
 
 
-try:
-    preco = float(input("Digite o preço do produto: "))
+# Cadastro do preço
+while True:
+    try:
+        preco = float(input("Digite o preço do produto: "))
 
-    if preco < 0:
-        print(Fore.RED + "Erro: O preço do produto não pode ser negativo." + Style.RESET_ALL)
-    else:
-        print(Fore.GREEN + "Preço cadastrado com sucesso!" + Style.RESET_ALL)
+        if preco < 0:
+            print(colorama.Fore.RED + "Erro: O preço do produto não pode ser negativo." + colorama.Style.RESET_ALL)
+        else:
+            print(colorama.Fore.GREEN + "Preço cadastrado com sucesso!" + colorama.Style.RESET_ALL)
+            break
 
-except ValueError:
-    print(Fore.RED + "Erro: O preço do produto deve ser um NÚMERO válido." + Style.RESET_ALL)
-
-
-try:
-    quantidade = int(input("Digite a quantidade do produto: "))
-
-    if quantidade < 0:
-        print(Fore.RED + "Erro: A quantidade do produto não pode ser negativa." + Style.RESET_ALL)
-    else:
-        print(Fore.GREEN + "Quantidade cadastrada com sucesso!" + Style.RESET_ALL)
-
-except ValueError:
-    print(Fore.RED + "Erro: A quantidade do produto deve ser um NÚMERO válido." + Style.RESET_ALL)
+    except ValueError:
+        print(colorama.Fore.RED + "Erro: O preço do produto deve ser um NÚMERO válido." + colorama.Style.RESET_ALL)
 
 
-print(Fore.CYAN + "\n--- Cadastro do Produto ---" + Style.RESET_ALL)
-print(f"Nome: {nome}")
-print(f"Preço: R$ {preco:.2f}")
-print(f"Quantidade: {quantidade}")
-
+# Exibição do cadastro print(colorama.Fore.CYAN + "\n--- Cadastro do Produto ---" + colorama.Style.RESET_ALL) print(f"Nome: {nome}") print(f"Preço: R$ {preco:.2f}") print(f"Quantidade: {quantidade}")
